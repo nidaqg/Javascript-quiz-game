@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie-edge">
 <title>Javascript Quiz Game</title>
 
 <!--reset cdss plus local css file linked-->
@@ -14,23 +13,34 @@
 
 <!--wrapper to contain all element-->
 <body class="wrapper">
+    <!--header contain title + the countdown timer + highscore-->
     <header>
-        <h1>JavaScript Quiz!</h1>
-        <section class="countdown" id="timer"></section>
+        <h1>JavaScript Quiz</h1>
+            <section class= "highScore">
+              <p>Highscore:</p>
+            </section>
+            <section class="countdown" id="timer"></section>  
     </header>
 
+    <!--the main section will contain the quiz, etc created dynamically using javascript-->
     <main>
         <section class="quizBox"></section>
-
+        <section class="myButton"></section>
+     
+        <section class="answerButtons visibility">
+        <button class="btn" id="choice1"></button>
+        <button class="btn" id= "choice2"></button>
+        <button class="btn" id= "choice3"></button>
+        <button class="btn" id= "choice4"></button>
+        </section>
+     
     </main>
-
-    <footer>
+    <footer class="footer">
+        <p id="result"></p>
 
     </footer>
+
     
-
-
-
 <script src="myscript.js"></script>
 
 </body>
