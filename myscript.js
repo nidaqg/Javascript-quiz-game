@@ -112,6 +112,7 @@ function selectAnswer (event) {
    }   
    else {
         result.textContent = "Wrong answer!";
+        timeLeft -= 5;
    }
    //if statement to stop looping through questions and end game if all questions have been looped through
    if (currentIndex === theQuestions.length - 1) {
@@ -127,7 +128,7 @@ function selectAnswer (event) {
 
 //Created variable which is array of all questions and answers
      var theQuestions = [
-     {question: "Which of the following will write the message ‘Hello world!’ In an alert box?",
+     {question: "Which of the following will write the message ‘Hello world!’ in an alert box?",
       choice1: "alertbox(Hello world!);",
       choice2: "alertnow(Hello world!);",
       choice3: "alert(“Hello world!”);",
