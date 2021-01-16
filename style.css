@@ -46,7 +46,7 @@ main {
     
 }
 
-.quizBox {
+.quizBox, .gameOver {
     text-align: center;
     justify-content: center;
     max-width: fit-content;
@@ -62,8 +62,8 @@ main {
 
 .btn {
     border: 1px solid;
-    border-radius: 12px;
-    font-size: 15px;
+    border-radius: 10px;
+    font-size: 20px;
     padding: 10px;
     background-color: #ecf5ff;
 }
@@ -75,6 +75,7 @@ main {
 .btn:focus {
     outline: 0;
 }
+
 .visibility {
     visibility: hidden;
 }

@@ -10,14 +10,14 @@ var option2 = document.querySelector("#choice2");
 var option3 = document.querySelector("#choice3");
 var option4 = document.querySelector("#choice4");
 var result = document.querySelector("#result");
+var score = document.querySelector("#score");
+var gameOverScreen = document.querySelector(".gameOver");
+
+//set current index for questions to zero, set wins to zero
 var currentIndex = 0;
-
 var wins = 0;
-var losses = 0;
 
-
-
-//function for the countdown timer
+//Set countdown timer to 30 seconds, start countdown function
 var timeLeft = 30;
 function updateTimer() {
      timerInterval = setInterval(function () {
@@ -32,15 +32,43 @@ function updateTimer() {
      }, 1000);
 }
 
-//function to clear display and display game over when timer runs out
+//function to clear display and display game over when timer runs out or questions are finished
 function gameOver() {
-     timerDisplay = '';
-     var gameOverImage = document.createElement("img");
-     gameOverImage.setAttribute("src", "images/gameOver.png");
-     mainEl.appendChild(gameOverImage);
+   timerDisplay = '';
+    var gameOver = document.createElement("p");
+    var yourScore = document.createElement("p");
+    var inputWhat = document.createElement("span");
+    var userInput = document.createElement("input");
+    var submitButton = document.createElement("button");
+
+    submitButton.classList.add("btn");
+
+     userInput.type = "text";
+     userInput.value = "";
+
+     gameOver.textContent = "Game Over!"
+    yourScore.textContent = "Your Final score is: " + wins;
+    inputWhat.textContent = "Enter initials: ";
+    submitButton.innerHTML = "Submit";
+
+
+    gameOverScreen.appendChild(gameOver);
+    gameOverScreen.appendChild(yourScore);
+    gameOverScreen.appendChild(inputWhat);
+    gameOverScreen.appendChild(userInput);
+    gameOverScreen.appendChild(submitButton);
+
+    submitButton.addEventListener("click", function (event){
+         event.preventDefault();
+         localStorage.setItem("name", userInput.value);
+         localStorage.setItem("score", wins);
+
+    });
+
      answerOptions.classList.add("visibility");
      quizBox.classList.add("visibility");
 }
+
 
 //function to start quiz
 function startQuiz() {
@@ -50,18 +78,16 @@ function startQuiz() {
    rules.remove();
    var startButton = document.querySelector("#startButton");
    startButton.remove();
+   //call function that will call the questions
    getQuestion();
 }
 
-
+//function to go through all the questions
 function getQuestion () {
-
-
-     //for (i = 0; i < theQuestions.length; i++) {
       currentQuestion = theQuestions[currentIndex];
       quizBox.textContent = currentQuestion.question;
 
-               
+//remove 'hidden' style from buttons container so they are visible, add event listeners to all of them         
      answerOptions.classList.remove("visibility");
      option1.textContent = currentQuestion.choice1;
      option2.textContent = currentQuestion.choice2;
@@ -73,28 +99,21 @@ function getQuestion () {
      option3.addEventListener("click", selectAnswer);
      option4.addEventListener("click", selectAnswer);
         }
-    // }
  
+//function to be called when answer buttons are clicked
 function selectAnswer (event) {
-
+     //set variable for the current target of the click event
    var clicked = event.currentTarget.textContent;
-   console.log(clicked)
-   console.log(currentQuestion.answer)
+
    if (clicked === currentQuestion.answer) {
         result.textContent = "Correct Answer!";
-        //currentIndex++
-        //getQuestion();
         wins++;
-        highScore.textContent = wins;
-   }
+        score.textContent = wins;
+   }   
    else {
         result.textContent = "Wrong answer!";
-        //currentIndex++
-       // getQuestion();
-        wins--;
-        highScore.textContent = wins;
    }
-
+   //if statement to stop looping through questions and end game if all questions have been looped through
    if (currentIndex === theQuestions.length - 1) {
       gameOver();
    } 
@@ -103,10 +122,7 @@ function selectAnswer (event) {
         getQuestion()
    }
 
-
-
 }
-
 
 
 //Created variable which is array of all questions and answers
@@ -154,7 +170,7 @@ function rulesFirst() {
      //onloading page, this will be called
      //create p element to hold rules, append it to quizBox
      var rulesFirst = document.createElement("p");
-     rulesFirst.setAttribute("style", "margin-bottom:10px");
+     rulesFirst.setAttribute("style", "margin-bottom: 10px");
      rulesFirst.setAttribute("id", "rulesFirst");
      rulesFirst.textContent = "Try to answer the following Javascript related questions within the time limit. Keep in mind that incorrect answers will substract 5 seconds from the timer!";
      quizBox.appendChild(rulesFirst);
