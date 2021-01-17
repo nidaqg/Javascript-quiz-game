@@ -1,5 +1,3 @@
-
-
 header {
     padding: 20px;
     background-color: #0e488a;
@@ -18,7 +16,7 @@ h1 {
 main {
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     color: rgb(34, 34, 77);
     
 }
@@ -39,8 +37,8 @@ main {
 .btn {
     border: 1px solid;
     border-radius: 10px;
-    font-size: 20px;
-    padding: 10px;
+    font-size: 18px;
+    padding: 8px;
     background-color: #ecf5ff;
 }
 
@@ -63,6 +61,14 @@ main {
     padding: 20px;
     border-top: 2px solid;
     background-color:#0e488a;
+}
 
+.userInput {
+    margin-bottom: 10px;
+    border: solid;
+}
+
+.userInput:focus {
+    background-color: #ecf5ff;
 }
 

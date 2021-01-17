@@ -45,9 +45,10 @@ function gameOver() {
 
      userInput.type = "text";
      userInput.value = "";
+     userInput.classList.add("userInput");
 
      gameOver.textContent = "Game Over!"
-    yourScore.textContent = "Your Final score is: " + wins;
+    yourScore.textContent = "Your final score is: " + wins;
     inputWhat.textContent = "Enter initials: ";
     submitButton.innerHTML = "Submit";
 
@@ -56,7 +57,7 @@ function gameOver() {
     gameOverScreen.appendChild(yourScore);
     gameOverScreen.appendChild(inputWhat);
     gameOverScreen.appendChild(userInput);
-    gameOverScreen.appendChild(submitButton);
+    myButton.appendChild(submitButton);
 
     submitButton.addEventListener("click", function (event){
          event.preventDefault();
@@ -65,8 +66,8 @@ function gameOver() {
 
     });
 
-     answerOptions.classList.add("visibility");
-     quizBox.classList.add("visibility");
+     answerOptions.remove();
+     quizBox.remove();
 }
 
 
@@ -80,6 +81,9 @@ function startQuiz() {
    startButton.remove();
    //call function that will call the questions
    getQuestion();
+   //retrieve high score from local storage and display on the screen
+   var lastHighScore = localStorage.getItem("score");
+   highScore.textContent = "High Score: " + lastHighScore;
 }
 
 //function to go through all the questions
@@ -87,12 +91,13 @@ function getQuestion () {
       currentQuestion = theQuestions[currentIndex];
       quizBox.textContent = currentQuestion.question;
 
-//remove 'hidden' style from buttons container so they are visible, add event listeners to all of them         
+      //make answer buttons visible, add text content and click event
      answerOptions.classList.remove("visibility");
      option1.textContent = currentQuestion.choice1;
      option2.textContent = currentQuestion.choice2;
      option3.textContent = currentQuestion.choice3;
      option4.textContent = currentQuestion.choice4;
+
      
      option1.addEventListener("click", selectAnswer);
      option2.addEventListener("click", selectAnswer);
@@ -189,22 +194,3 @@ function rulesFirst() {
 
 
 rulesFirst ();
-
-//onload, the page should display highscore counter which populates from local storage
-//onload, display game rules and start button(generated from JS with create element, append element)
-
-//on clicking start button, call updateTimer function + startGame function (init function?)
-
-//startGame function start a series of questions, one afteer the other
-//each question has multiple choice answers
-//if user clicks correct answer, display 'Correct answer' below game
-//if user clicks wrong answer, display 'wrong answer!' below game + substract 5 seconds from timer
-//After each question, a new question takes it's place
-
-//when all questions are answered or timer reaches zero, game is over
-//display gameover screen, show score, show input space for user to input name
-//validate input so it's not null
-//save input + score as array in local storage
-//get highscore array from local storage and populate high score display
-//show buttons to reset or restart game (init?)
-//Init function to initialise the page
