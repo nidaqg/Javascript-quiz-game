@@ -17,14 +17,14 @@ For this project, I was required to create a coding quiz using Javascript. The q
 
 For making this app I made use of basic html and css and concentrated mainly on Javascript. Where possible I generated (or removed) elements and attributes dynamically through Javascript and made use of multiple functions to run each component of the game. 
 
-Below is an image of the UI of the game as displayed to the user:
-![images/start-page-demo.png] 
+Below are images of the UI of the game as displayed to the user:
+![start-page-demo](images/start-page-demo.png) 
 
-![images/question-display-demo.png]
+![question-display-demo](images/question-display-demo.png)
 
-![images/gameover-screen-demo.png]
+![gameover-screen-demo](images/gameover-screen-demo.png)
 
-![images/highscore-page-demo.png]
+![highscore-page-demo](images/highscore-page-demo.png)
 
 
 Below is the link to the GitHub repository:
