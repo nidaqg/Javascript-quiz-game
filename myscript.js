@@ -20,14 +20,15 @@ var wins = 0;
 //Set countdown timer to 30 seconds, start countdown function
 var timeLeft = 30;
 function updateTimer() {
+     
      timerInterval = setInterval(function () {
-          timeLeft--;
-          timerDisplay.textContent = timeLeft + " seconds left";
-
-          //when timer reaches zero, clear interval function and display game over
-          if (timeLeft === 0) {
+//when timer reaches zero, clear interval function and display game over
+        if (timeLeft === 0) {
                clearInterval(timerInterval);
                gameOver();
+          } else {
+          timeLeft--;
+          timerDisplay.textContent = timeLeft + " seconds left";
           }
      }, 1000);
 }
@@ -48,21 +49,23 @@ function gameOver() {
      userInput.classList.add("userInput");
 
      gameOver.textContent = "Game Over!"
-    yourScore.textContent = "Your final score is: " + wins;
-    inputWhat.textContent = "Enter initials: ";
-    submitButton.innerHTML = "Submit";
-
+     yourScore.textContent = "Your final score is: " + wins;
+     inputWhat.textContent = "Enter initials: ";
+     submitButton.innerHTML = "Submit";
 
     gameOverScreen.appendChild(gameOver);
     gameOverScreen.appendChild(yourScore);
     gameOverScreen.appendChild(inputWhat);
-    gameOverScreen.appendChild(userInput);
+    gameOverScreen.appendChild(userInput); 
     myButton.appendChild(submitButton);
+
 
     submitButton.addEventListener("click", function (event){
          event.preventDefault();
+
          localStorage.setItem("name", userInput.value);
          localStorage.setItem("score", wins);
+         window.location.href = "highscore.html";
 
     });
 
@@ -81,9 +84,6 @@ function startQuiz() {
    startButton.remove();
    //call function that will call the questions
    getQuestion();
-   //retrieve high score from local storage and display on the screen
-   var lastHighScore = localStorage.getItem("score");
-   highScore.textContent = "High Score: " + lastHighScore;
 }
 
 //function to go through all the questions
@@ -113,7 +113,7 @@ function selectAnswer (event) {
    if (clicked === currentQuestion.answer) {
         result.textContent = "Correct Answer!";
         wins++;
-        score.textContent = wins;
+        score.textContent = "Score: " + wins;
    }   
    else {
         result.textContent = "Wrong answer!";
@@ -194,3 +194,4 @@ function rulesFirst() {
 
 
 rulesFirst ();
+

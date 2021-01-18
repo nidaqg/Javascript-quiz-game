@@ -3,14 +3,23 @@ header {
     background-color: #0e488a;
 }
 
-h1 {
+h1, h3 {
     color: seashell;
     font-weight: bold;
 }
 
-.countdown, .highScore {
+.countdown {
     font-size: 15px;
     color:seashell;
+}
+
+a {
+    color: seashell;
+    font-size: 15px;
+}
+
+a:hover {
+    color: lightblue;
 }
 
 main {
@@ -27,7 +36,7 @@ main {
 
 }  
 
-.answerButtons {
+.answerButtons, .theButtons {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 10px;
