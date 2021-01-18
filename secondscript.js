@@ -9,11 +9,20 @@ function renderHighScore () {
    var theName = localStorage.getItem("name");
 
     var name = document.createElement("p");
+    if (theName === null) {
+        name.textContent = "Name: ";
+    } else {
     name.textContent = "Name: " + theName;
+    }
     theDisplay.appendChild(name);
 
     var score = document.createElement("p");
+
+    if (lastHS === null) {
+        score.textContent = "High Score: ";
+    } else {
     score.textContent = "High Score: " + lastHS;
+    }
     theDisplay.appendChild(score);
   
     var resetButton = document.createElement("button");

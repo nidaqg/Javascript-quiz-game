@@ -143,7 +143,8 @@ function selectAnswer (event) {
    }
    //if statement to stop looping through questions and end game if all questions have been looped through
    if (currentIndex === theQuestions.length - 1) {
-      gameOver();
+      //gameOver();
+      timeLeft = 0
    } 
    else {
         currentIndex++
