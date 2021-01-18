@@ -1,8 +1,8 @@
-
+//declare all the variables needed to access all relevant HTML elements
 var theDisplay = document.querySelector("#scoreDisplay");
 var buttons = document.querySelector(".theButtons");
 
-
+//function to retrieve high score date from local storage, adding buttons and click events
 function renderHighScore () {
 
    var lastHS = localStorage.getItem("score");
@@ -23,9 +23,22 @@ function renderHighScore () {
     resetButton.textContent = "Restart Quiz";
     clearButton.textContent = "Clear High Score";
 
-
     buttons.appendChild(resetButton);
     buttons.appendChild(clearButton);
+
+    resetButton.addEventListener("click", function(event) { 
+     event.preventDefault();
+     window.location.href = "index.html";
+    });
+
+    clearButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        name.textContent = "Name: ";
+       score.textContent = "highScore: ";
+       localStorage.clear();
+    })
+
+
 
 }
 

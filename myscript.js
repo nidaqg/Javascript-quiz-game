@@ -17,10 +17,29 @@ var gameOverScreen = document.querySelector(".gameOver");
 var currentIndex = 0;
 var wins = 0;
 
+function rulesFirst() {
+     //onloading page, this will be called
+     //create p element to hold rules, append it to quizBox
+     var rulesFirst = document.createElement("p");
+     rulesFirst.setAttribute("style", "margin-bottom: 10px");
+     rulesFirst.setAttribute("id", "rulesFirst");
+     rulesFirst.textContent = "Try to answer the following Javascript related questions within the time limit. Keep in mind that incorrect answers will substract 5 seconds from the timer!";
+     quizBox.appendChild(rulesFirst);
+     //create start button, append it to quizBox and add click event
+     var startButton = document.createElement("button");
+     startButton.innerHTML = "Start Quiz";
+     startButton.setAttribute("id", "startButton");
+     //add styling to button using exisiting class in CSS
+     startButton.classList.add("btn");
+     myButton.appendChild(startButton);
+     startButton.addEventListener("click", startQuiz);
+
+}
+
+
 //Set countdown timer to 30 seconds, start countdown function
 var timeLeft = 30;
 function updateTimer() {
-     
      timerInterval = setInterval(function () {
 //when timer reaches zero, clear interval function and display game over
         if (timeLeft === 0) {
@@ -62,11 +81,14 @@ function gameOver() {
 
     submitButton.addEventListener("click", function (event){
          event.preventDefault();
+         if (userInput.value.length === 0) {
+              alert("Please enter initials before submitting");
+         } else {
 
          localStorage.setItem("name", userInput.value);
          localStorage.setItem("score", wins);
          window.location.href = "highscore.html";
-
+         }
     });
 
      answerOptions.remove();
@@ -130,7 +152,6 @@ function selectAnswer (event) {
 
 }
 
-
 //Created variable which is array of all questions and answers
      var theQuestions = [
      {question: "Which of the following will write the message ‘Hello world!’ in an alert box?",
@@ -169,27 +190,6 @@ function selectAnswer (event) {
      answer: "charAt()"
      }             
      ];
-
-
-
-function rulesFirst() {
-     //onloading page, this will be called
-     //create p element to hold rules, append it to quizBox
-     var rulesFirst = document.createElement("p");
-     rulesFirst.setAttribute("style", "margin-bottom: 10px");
-     rulesFirst.setAttribute("id", "rulesFirst");
-     rulesFirst.textContent = "Try to answer the following Javascript related questions within the time limit. Keep in mind that incorrect answers will substract 5 seconds from the timer!";
-     quizBox.appendChild(rulesFirst);
-     //create start button, append it to quizBox and add click event
-     var startButton = document.createElement("button");
-     startButton.innerHTML = "Start Quiz";
-     startButton.setAttribute("id", "startButton");
-     //add styling to button using exisiting class in CSS
-     startButton.classList.add("btn");
-     myButton.appendChild(startButton);
-     startButton.addEventListener("click", startQuiz);
-
-}
 
 
 
