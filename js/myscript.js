@@ -5,10 +5,6 @@ var quizBox = document.querySelector(".quizBox");
 var myButton = document.querySelector(".myButton");
 var highScore = document.querySelector(".highScore");
 var answerOptions = document.querySelector(".answerButtons");
-var option1 = document.querySelector("#choice1");
-var option2 = document.querySelector("#choice2");
-var option3 = document.querySelector("#choice3");
-var option4 = document.querySelector("#choice4");
 var result = document.querySelector("#result");
 var score = document.querySelector("#score");
 var gameOverScreen = document.querySelector(".gameOver");
@@ -17,8 +13,25 @@ var gameOverScreen = document.querySelector(".gameOver");
 var currentIndex = 0;
 var wins = 0;
 
+//Create button, add css styling via class, and append them
+var option1 = document.createElement("button");
+var option2 = document.createElement("button");
+var option3 = document.createElement("button");
+var option4 = document.createElement("button");
+
+option1.classList.add("btn");
+option2.classList.add("btn");
+option3.classList.add("btn");
+option4.classList.add("btn");
+
+answerOptions.appendChild(option1);
+answerOptions.appendChild(option2);
+answerOptions.appendChild(option3);
+answerOptions.appendChild(option4);
+
+
+//onloading page, this function will be called
 function rulesFirst() {
-     //onloading page, this will be called
      //create p element to hold rules, append it to quizBox
      var rulesFirst = document.createElement("p");
      rulesFirst.setAttribute("style", "margin-bottom: 10px");
@@ -115,18 +128,19 @@ function getQuestion () {
 
       //make answer buttons visible, add text content and click event
      answerOptions.classList.remove("visibility");
+
      option1.textContent = currentQuestion.choice1;
      option2.textContent = currentQuestion.choice2;
      option3.textContent = currentQuestion.choice3;
      option4.textContent = currentQuestion.choice4;
 
-     
      option1.addEventListener("click", selectAnswer);
      option2.addEventListener("click", selectAnswer);
      option3.addEventListener("click", selectAnswer);
      option4.addEventListener("click", selectAnswer);
         }
- 
+
+
 //function to be called when answer buttons are clicked
 function selectAnswer (event) {
      //set variable for the current target of the click event
